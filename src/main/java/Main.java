@@ -1,3 +1,7 @@
+import kong.unirest.HttpResponse;
+import kong.unirest.JsonNode;
+import kong.unirest.Unirest;
+
 import java.util.Scanner;
 
 public class Main {
@@ -14,6 +18,11 @@ public class Main {
     }
 
     private static void search(String query) {
-        System.out.println("Search not implemented yet!");
+        final String BASE_URL = "https://sis.jhu.edu/api/classes";
+        final String KEY = "YTTKT7kmBsvnoSxMsndRQm0HEJOvAEDE";
+
+        String endpoint = BASE_URL + "/codes/schools?Key=" + KEY;
+        HttpResponse<JsonNode> jsonResponse = Unirest.get(endpoint).asJson();
+        System.out.println(jsonResponse.getBody().toString());
     }
 }
